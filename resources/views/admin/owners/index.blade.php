@@ -32,8 +32,8 @@
                               <td class="px-4 py-3">{{ $owner->name }}</td>
                               <td class="px-4 py-3">{{ $owner->email }}</td>
                               <td class="px-4 py-3">{{ $owner->created_at }}</td>
-                              <td class="w-10 text-center">
-                                <input name="plan" type="radio">
+                              <td class="px-4 py-3">
+                                <button onclick="location.href='{{ route('admin.owners.edit', ['owner' => $owner->id]) }}'" type="button" class="text-white bg-green-500 border-0 py-2 px-4 focus:outline-none hover:bg-green-600 rounded">編集</button>
                               </td>
                             </tr>
                             @endforeach
