@@ -20,6 +20,9 @@
                     <x-nav-link :href="route('owner.shops.index')" :active="request()->routeIs('owner.shops.index')">
                         店舗情報
                     </x-nav-link>
+                    <x-nav-link :href="route('owner.images.index')" :active="request()->routeIs('owner.images.index')">
+                        画像管理
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -74,6 +77,9 @@
             <x-responsive-nav-link :href="route('owner.shops.index')" :active="request()->routeIs('owner.shops.index')">
                 店舗情報
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('owner.images.index')" :active="request()->routeIs('owner.images.index')">
+                画像管理
+            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
@@ -96,9 +102,7 @@
                 <form method="POST" action="{{ route('owner.logout') }}">
                     @csrf
 
-                    <x-responsive-nav-link :href="route('owner.logout')"
-                            onclick="event.preventDefault();
-                                        this.closest('form').submit();">
+                    <x-responsive-nav-link :href="route('owner.logout')" onclick="event.preventDefault(); this.closest('form').submit();">
                         {{ __('Log out') }}
                     </x-responsive-nav-link>
                 </form>
