@@ -24,16 +24,17 @@ class UploadImageRequest extends FormRequest
     public function rules()
     {
         return [
-            'image'=>'images|mimes:jpg,jpeg,png|max:2048'
+            'image' => 'image|mimes:jpg,jpeg,png|max:2048',
+            'files.*.image' => 'required|image|mimes:jpg,jpeg,png|max:2048'
         ];
     }
 
     public function message()
     {
         return [
-            'image'=>'指定されたファイルが画像ではありません。',
-            'mimes'=>'指定された拡張子（PNG/JPG/JPEG）ではありません。',
-            'max'=>'ファイルサイズが2MB以下の画像ファイルを選択してください。'
+            'image' => '指定されたファイルが画像ではありません。',
+            'mimes' => '指定された拡張子（PNG/JPG/JPEG）ではありません。',
+            'max' => 'ファイルサイズが2MB以下の画像ファイルを選択してください。'
         ];
     }
 }
