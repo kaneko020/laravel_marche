@@ -17,6 +17,7 @@ class CreateImagesTable extends Migration
             $table->id();
             $table->foreignId('owner_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->string('filename');
+            $table->string('title')->nullable();
             $table->timestamps();
         });
     }
