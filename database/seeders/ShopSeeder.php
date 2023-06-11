@@ -18,9 +18,9 @@ class ShopSeeder extends Seeder
         DB::table('shops')->insert([
             [
                 'owner_id' => 1,
-                'name' => 'ここに店名が入ります',
-                'information' => 'ここにお店の情報が入ります',
-                'filename' => '',
+                'name' => 'テスト店舗',
+                'information' => '店舗情報テストです。店舗情報テストです。店舗情報テストです。',
+                'filename' => '632579462_648521da3f3bf.png',
                 'is_selling' => true,
             ],
             [
