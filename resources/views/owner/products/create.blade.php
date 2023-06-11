@@ -102,7 +102,7 @@
     images.forEach(image => {
       image.addEventListener('click', function(e){
         const imageName = e.target.dataset.id.substr(0, 6)
-        const imageId = e.target.dataset.id.replace(imageName, '_', '')
+        const imageId = e.target.dataset.id.replace(imageName + '_', '')
         const imageFile = e.target.dataset.file
         const ImagePath = e.target.dataset.path
         const modal = e.target.dataset.modal

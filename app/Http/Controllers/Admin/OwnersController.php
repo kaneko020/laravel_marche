@@ -83,7 +83,7 @@ class OwnersController extends Controller
         ->with([
             'message' => 'オーナー登録を実施しました',
             'status' => 'info',
-        ]); 
+        ]);
     }
 
     /**
