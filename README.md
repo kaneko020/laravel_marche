@@ -6,7 +6,7 @@
 
 画像のダミーデータは
 public/imagesフォルダ内に
-sample1.jpg 〜 sample6.jpg として
+store1.jpg 〜 store3.jpg として
 保存しています。
 
 php artisan storage:link で
