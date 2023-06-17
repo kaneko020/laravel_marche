@@ -11,5 +11,4 @@
       window.location.href = '{{ route('user.cart.index') }}';         
     });
   } 
-
 </script>
