@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Mail;
 use App\Models\Product;
 use App\Models\Stock;
 use App\Models\PrimaryCategory;
-use App\Jobs\SendThanksMail;
 
 class ItemController extends Controller
 {
@@ -32,9 +31,6 @@ class ItemController extends Controller
     }
     public function index(Request $request)
     {
-        // 非同期にメール送信
-        SendThanksMail::dispatch();
-
         $categories = PrimaryCategory::with('secondary')
             ->get();
 

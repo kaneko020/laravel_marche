@@ -11,20 +11,20 @@
               <div class="p-6 bg-white border-b border-gray-200">
                 @if (count($products) > 0)
                   @foreach ($products as $product)
-                    <div class="md:flex md:items-center mb-2">
+                    <div class="md:flex md:items-center py-4 border-b">
                       <div class="md:w-3/12">
                         @if($product->shop->filename !== null)
-                          <img class="w-40 h-40 rounded-full mx-auto object-cover" src="{{ asset('storage/shops/' . $product->shop->filename) }}">
+                          <img class="w-28 h-28 rounded-full mx-auto object-cover" src="{{ asset('storage/shops/' . $product->shop->filename) }}">
                         @else
                           <img src="">
                         @endif
                       </div>
                       <div class="md:w-4/12 md:ml-2">{{ $product->name }}</div>
-                      <div class="md:w-3/12 flex justify-around">
+                      <div class="md:w-4/12 flex justify-around">
                         <div>{{ $product->pivot->quantity }}</div>
                         <div>{{ number_format($product->pivot->quantity * $product->price) }}<span class="text-sm text-gray-700">円(税込)</span></div>
                       </div>
-                      <div class="md:w-2/12">
+                      <div class="md:w-1/12">
                         <form method="post" action="{{ route('user.cart.delete', ['item' => $product->id]) }}">
                           @csrf
                           <button>
