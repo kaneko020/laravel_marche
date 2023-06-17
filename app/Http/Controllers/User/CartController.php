@@ -62,7 +62,7 @@ class CartController extends Controller
     {
         $user = User::findOrFail(Auth::id());
         $products = $user->products;
-
+        
         $lineItems = [];
         foreach ($products as $product) {
             $quantity = '';
@@ -70,18 +70,31 @@ class CartController extends Controller
                 ->sum('quantity');
 
             if ($product->pivot->quantity > $quantity) {
-                return redirect()->route('user.cart.index')
-                    ->with('message', '在庫が足りません');
+                return redirect()->route('user.cart.index');
             } else {
                 $lineItem = [
-                    'name' => $product->name,
-                    'discription' => $product->information,
-                    'amount' => $product->price,
-                    'currency' => 'jpy',
+                    'price_data' => [
+                        'currency' => 'jpy',
+                        'unit_amount' => $product->price,
+                        'product_data' => [
+                            'name' => $product->name,
+                            'description' => $product->information,
+                        ],
+                    ],
                     'quantity' => $product->pivot->quantity,
                 ];
-
-                array_push($lineItems, $lineItem);
+                // $lineItem = [
+                //     'price_data' => [
+                //         'unit_amount' => $product->price,
+                //         'currency' => 'JPY',
+                //         'product_data' => [
+                //             'name' => $product->name,
+                //             'description' => $product->information,
+                //         ],
+                //     ],
+                //     'quantity' => $product->pivot->quantity,
+                // ];
+                array_push($lineItems, $lineItem);    
             }
         }
 
@@ -89,11 +102,9 @@ class CartController extends Controller
             Stock::create([
                 'product_id' => $product->id,
                 'type' => \Constant::PRODUCT_LIST['reduce'],
-                'quantity' => $product->pivot->quantity * -1,
+                'quantity' => $product->pivot->quantity * -1
             ]);
         }
-
-        dd('test');
 
         \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
 
@@ -104,7 +115,7 @@ class CartController extends Controller
             'success_url' => route('user.items.index'),
             'cancel_url' => route('user.cart.index'),
         ]);
-        
+
         $publicKey = env('STRIPE_PUBLIC_KEY');
 
         return view('user.checkout', compact('session', 'publicKey'));
