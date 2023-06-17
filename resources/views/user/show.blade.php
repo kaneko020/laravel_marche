@@ -13,30 +13,30 @@
                     <div class="md:w-1/2">
                       <div class="swiper-container">
                         <div class="swiper-wrapper">
-                          <div class="swiper-slide">
+                          <div class="swiper-slide flex justify-center">
                             @if($product->imageFirst->filename !== null)
-                              <img src="{{ asset('storage/products/' . $product->imageFirst->filename) }}">
+                              <img class="w-80 h-80 m-8" src="{{ asset('storage/products/' . $product->imageFirst->filename) }}">
                             @else
                             <img src="">
                             @endif
                           </div>
-                          <div class="swiper-slide">
+                          <div class="swiper-slide flex justify-center">
                             @if($product->imageSecond->filename !== null)
-                              <img src="{{ asset('storage/products/' . $product->imageSecond->filename) }}">
+                              <img class="w-80 h-80 m-8" src="{{ asset('storage/products/' . $product->imageSecond->filename) }}">
                             @else
                             <img src="">
                             @endif
                           </div>
-                          <div class="swiper-slide">
+                          <div class="swiper-slide flex justify-center">
                             @if($product->imageThird->filename !== null)
-                              <img src="{{ asset('storage/products/' . $product->imageThird->filename) }}">
+                              <img class="w-80 h-80 m-8" src="{{ asset('storage/products/' . $product->imageThird->filename) }}">
                             @else
                             <img src="">
                             @endif
                           </div>
-                          <div class="swiper-slide">
+                          <div class="swiper-slide flex justify-center">
                             @if($product->imageFourth->filename !== null)
-                              <img src="{{ asset('storage/products/' . $product->imageFourth->filename) }}">
+                              <img class="w-80 h-80 m-8" src="{{ asset('storage/products/' . $product->imageFourth->filename) }}">
                             @else
                             <img src="">
                             @endif
@@ -48,13 +48,13 @@
                         <div class="swiper-scrollbar"></div>
                       </div>
                     </div>
-                    <div class="md:w-1/2 ml-8">
-                      <h2 class="mb-4 text-sm title-font text-gray-500 tracking-widest">{{ $product->category->name }}</h2>
+                    <div class="md:w-1/2 md:ml-8 md:mt-0 mt-4">
+                      <h2 class="mb-2 text-sm title-font text-gray-500 tracking-widest">{{ $product->category->name }}</h2>
                       <h1 class="mb-4 text-gray-900 text-3xl title-font font-medium">{{ $product->name }}</h1>
-                      <p class="mb-12 leading-relaxed">{{ $product->information }}</p>
+                      <p class="mb-8 leading-relaxed">{{ $product->information }}</p>
                       <form method="post" action="{{ route('user.cart.add') }}">
                         @csrf
-                        <div class="flex justify-end items-center mb-6">
+                        <div class="flex justify-end items-center mb-4">
                           <span class="mr-3">数量</span>
                           <div class="relative">
                             <select name="quantity" class="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base pl-3 pr-10">
@@ -74,7 +74,7 @@
                       </form>
                     </div>
                   </div>
-                  <div class="border-t border-gray-400 my-8 pt-8">
+                  <div class="border-t border-gray-400 my-4 pt-8">
                     <div class="mb-4 text-center">この商品を販売しているショップ</div>
                     <div class="mb-4 text-center">{{ $product->shop->name }}</div>
                     <div class="mb-4 text-center">
