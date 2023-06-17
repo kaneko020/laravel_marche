@@ -6,12 +6,26 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Cart;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class CartController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth:users');
+    }
+
+    public function index()
+    {
+        $user = User::findOrFail(Auth::id());
+        $products = $user->products;
+        $totalPrice = 0;
+
+        foreach ($products as $product) {
+            $totalPrice += $product->price * $product->pivot->quantity;
+        }
+
+        return view('user.cart', compact('products', 'totalPrice'));
     }
 
     public function add(Request $request)
@@ -30,5 +44,7 @@ class CartController extends Controller
                 'quantity' => $request->quantity,
             ]);
         }
+
+        return redirect()->route('user.cart');
     }
 }
